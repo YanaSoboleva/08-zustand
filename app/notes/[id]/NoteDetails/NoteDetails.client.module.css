@@ -57,3 +57,27 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.dateText {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    display: block;
+}

@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchNoteById } from '@/lib/api';
 import css from './NoteDetails/NoteDetails.client.module.css';
 
+
 interface NoteDetailsClientProps {
   id?: string | string[] | undefined; 
 }
@@ -36,6 +37,11 @@ export default function NoteDetailsClient({ id: propId }: NoteDetailsClientProps
     <article className={css.container}>
       <header className={css.header}>
         <h1 className={css.title}>{note.title}</h1>
+        {note.createdAt && (
+         <p className={css.dateText}>
+           <strong>Created in:</strong> {new Date(note.createdAt).toLocaleString('uk-UA')}
+         </p>
+         )}
       </header>
       
       <div className={css.content}>

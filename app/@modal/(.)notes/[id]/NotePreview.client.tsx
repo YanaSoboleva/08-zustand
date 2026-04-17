@@ -23,7 +23,18 @@ export default function NoteDetailsClient({ id }: NoteDetailsClientProps) {
     router.back();
   };
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('uk-UA', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
   return (
+    
     <Modal onClose={handleClose}>
       {isLoading && <div className={css.loader}>Завантаження...</div>}
 
@@ -37,16 +48,20 @@ export default function NoteDetailsClient({ id }: NoteDetailsClientProps) {
         <article className={css.container}>
           <header className={css.header}>
             <h1 className={css.title}>{note.title}</h1>
+              {note.createdAt && (
+                  <p className={css.dateText}>
+                     <strong>Created in:</strong> {formatDate(note.createdAt)}
+                  </p>
+               )}
           </header>
-          
           <div className={css.content}>
             <p className={css.text}>{note.content}</p>
           </div>
 
-          {note.tag && (
+          {(note.tag || note.createdAt) && (
             <footer className={css.footer}>
               <div className={css.tags}>
-                <span className={css.tag}>#{note.tag}</span>
+                {note.tag && <span className={css.tag}>#{note.tag}</span>}
               </div>
             </footer>
           )}
